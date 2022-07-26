@@ -14,5 +14,14 @@ def get_all_garments():
     return jsonify(garments_response)
 
 # create one new garment listing
+@garment_bp.route("", methods=["POST"])
+def create_garment():
+    request_body = request.get_json()
+    new_garment = Garment.create_instance_from_json(Garment, request_body)
+
+    db.session.add(new_garment)
+    db.session.commit()
+
+    return make_response("Garment successfully created", 201)
 
 # get one garment by id

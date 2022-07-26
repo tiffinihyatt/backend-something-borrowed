@@ -9,7 +9,7 @@ class Garment(db.Model):
     color = db.Column(db.String, nullable=False)
     condition = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable = False)
-    description = db.Column(db.String)
+    description = db.Column(db.String, nullable = False)
     is_available = db.Column(db.Boolean, default=True)
 
     def to_dict(self):
@@ -24,4 +24,16 @@ class Garment(db.Model):
             price = self.price,
             description = self.description,
             is_available = self.is_available,
+        )
+    
+    def create_instance_from_json(cls, json_data):
+        return cls(
+            title = json_data["title"],
+            brand = json_data["brand"],
+            street_size = json_data["street_size"],
+            label_size = json_data["label_size"],
+            color = json_data["color"],
+            condition = json_data["condition"],
+            price = json_data["price"],
+            description = json_data["description"],
         )
