@@ -25,3 +25,7 @@ def create_garment():
     return make_response("Garment successfully created", 201)
 
 # get one garment by id
+@garment_bp.route("<garment_id>", methods=["GET"])
+def get_garment_by_id(garment_id):
+    garment = Garment.query.get(garment_id)
+    return garment.to_dict()
