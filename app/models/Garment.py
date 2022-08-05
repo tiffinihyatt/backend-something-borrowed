@@ -7,7 +7,7 @@ class Garment(db.Model):
     size = db.Column(db.Integer, nullable=False)
     color = db.Column(db.String, nullable=False)
     condition = db.Column(db.String, nullable=False)
-    price = db.Column(db.Integer, nullable = False)
+    price = db.Column(db.String, nullable = False)
     description = db.Column(db.String, nullable = False)
     is_available = db.Column(db.Boolean, default=True)
 

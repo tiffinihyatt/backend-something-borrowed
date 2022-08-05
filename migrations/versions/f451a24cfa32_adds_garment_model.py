@@ -1,8 +1,8 @@
-"""Import Garment model to app
+"""Adds Garment model
 
-Revision ID: 275b3c97f459
+Revision ID: f451a24cfa32
 Revises: 
-Create Date: 2022-07-26 15:50:13.076944
+Create Date: 2022-08-05 09:35:20.037062
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '275b3c97f459'
+revision = 'f451a24cfa32'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,12 +22,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('brand', sa.String(), nullable=False),
-    sa.Column('street_size', sa.Integer(), nullable=False),
-    sa.Column('label_size', sa.Integer(), nullable=False),
+    sa.Column('size', sa.Integer(), nullable=False),
     sa.Column('color', sa.String(), nullable=False),
     sa.Column('condition', sa.String(), nullable=False),
-    sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(), nullable=True),
+    sa.Column('price', sa.String(), nullable=False),
+    sa.Column('description', sa.String(), nullable=False),
     sa.Column('is_available', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
