@@ -25,7 +25,17 @@ def create_garment():
     return make_response("Garment successfully created", 201)
 
 # get one garment by id
-@garment_bp.route("<garment_id>", methods=["GET"])
+@garment_bp.route("/<garment_id>", methods=["GET"])
 def get_garment_by_id(garment_id):
     garment = Garment.query.get(garment_id)
     return garment.to_dict()
+
+# update availability on one garment
+@garment_bp.route("/<garment_id>", methods=["PATCH"])
+def toggle_availability(garment_id):
+    garment = Garment.query.get(garment_id)
+    garment.is_available = not garment.is_available
+
+    db.session.commit()
+
+    return make_response("Garment availability successfully updated", 201)
