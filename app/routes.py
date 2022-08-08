@@ -1,17 +1,21 @@
 from flask import Blueprint, request, jsonify, make_response, abort
 from app import db
 from app.models.Garment import Garment
+from .routes_helper import get_available_garments
+
 
 # board_bp = Blueprint('board_bp', __name__, url_prefix="/boards/")
 garment_bp = Blueprint('garment_bp', __name__, url_prefix="/garments")
 
-# get all garments
+# get all available garments
 @garment_bp.route("", methods=["GET"])
 def get_all_garments():
     garments = Garment.query.all()
-    garments_response = [garment.to_dict() for garment in garments]
+    garment_list = [garment.to_dict() for garment in garments]
 
-    return jsonify(garments_response)
+    available_garments = get_available_garments(garment_list)
+
+    return jsonify(available_garments)
 
 # create one new garment listing
 @garment_bp.route("", methods=["POST"])
