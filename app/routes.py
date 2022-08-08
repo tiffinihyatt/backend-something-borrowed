@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, abort
+from flask import Blueprint, request, jsonify, make_response
 from app import db
 from app.models.Garment import Garment
 from .routes_helper import get_available_garments
