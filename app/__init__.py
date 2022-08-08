@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, redirect, send_file
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
-from s3_functions import upload_file, show_image
-from werkzeug.utils import secure_filename
 
 db = SQLAlchemy()
 migrate = Migrate()

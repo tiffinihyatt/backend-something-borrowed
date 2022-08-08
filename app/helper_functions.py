@@ -1,3 +1,5 @@
+import boto3
+
 # get all available garments
 def get_available_garments(garments):
     available_garments = []
