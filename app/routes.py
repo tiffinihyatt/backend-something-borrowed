@@ -1,9 +1,8 @@
 from flask import Blueprint, request, jsonify, make_response, render_template, request, redirect, send_file
-from app import db, 
+from app import db 
 from app.models.Garment import Garment
-from .helper_functions import get_available_garments
+from .helper_functions import get_available_garments, upload_file, show_image
 import os
-from s3_functions import upload_file, show_image
 from werkzeug.utils import secure_filename
 
 # configurations for AWS S3
@@ -37,12 +36,18 @@ def create_garment():
 # upload one picture by garment id
 @garment_bp.route("/<garment_id>/upload", methods=["POST"])
 def upload_picture(garment_id):
-    if request.method == "POST":
-        f = request.files['file']
-        f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
-        upload_file(f"uploads/{f.filename}", BUCKET)
-        
-        return make_response("Image successfully uploaded", 200)
+    # access uploaded file
+    file = request.files['file']
+
+    # make new directory to store file
+    directory = str(garment_id)
+    path = os.path.join(UPLOAD_FOLDER, directory)
+    os.mkdir(path)
+
+    file.save(os.path.join(directory, secure_filename(file.filename)))
+    upload_file(f"{directory}/{file.filename}", BUCKET)
+    
+    return make_response("Image successfully uploaded", 200)
 
 # get one garment by id
 @garment_bp.route("/<garment_id>", methods=["GET"])
