@@ -31,7 +31,9 @@ def create_garment():
     db.session.add(new_garment)
     db.session.commit()
 
-    return make_response("Garment successfully created", 201)
+    new_garment_dict = new_garment.to_dict()
+
+    return str(new_garment_dict["id"])
 
 # upload one picture by garment id
 @garment_bp.route("/<garment_id>/upload", methods=["POST"])
