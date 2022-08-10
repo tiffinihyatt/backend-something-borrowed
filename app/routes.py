@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response, render_template, request, redirect, send_file
 from app import db 
 from app.models.Garment import Garment
-from .helper_functions import get_available_garments, upload_file, show_image
+from .helper_functions import get_available_garments, upload_file
 import os
 from werkzeug.utils import secure_filename
 
