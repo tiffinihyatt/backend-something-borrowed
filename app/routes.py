@@ -38,6 +38,7 @@ def create_garment():
 # upload one picture by garment id
 @garment_bp.route("/<garment_id>/upload", methods=["POST"])
 def upload_picture(garment_id):
+
     # access uploaded file
     # file = request.files['file']
 
