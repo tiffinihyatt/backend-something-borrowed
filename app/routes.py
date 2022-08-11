@@ -33,21 +33,25 @@ def create_garment():
 
     new_garment_dict = new_garment.to_dict()
 
-    return str(new_garment_dict["id"])
+    return new_garment_dict
 
 # upload one picture by garment id
 @garment_bp.route("/<garment_id>/upload", methods=["POST"])
 def upload_picture(garment_id):
     # access uploaded file
-    file = request.files['file']
+    # file = request.files['file']
 
-    # make new directory to store file
-    directory = str(garment_id)
-    path = os.path.join(UPLOAD_FOLDER, directory)
-    os.mkdir(path)
+    # # make new directory to store file
+    # directory = str(garment_id)
+    # path = os.path.join(UPLOAD_FOLDER, directory)
+    # os.mkdir(path)
 
-    file.save(os.path.join(directory, secure_filename(file.filename)))
-    upload_file(f"{directory}/{file.filename}", BUCKET)
+    # file.save(os.path.join(directory, secure_filename(file.filename)))
+    # upload_file(f"{directory}/{file.filename}", BUCKET)
+
+    uploaded_file = request.files['file']
+    uploaded_file.save(os.path.join(UPLOAD_FOLDER, secure_filename(uploaded_file.filename)))
+    upload_file(f"uploads/{f.filename}", BUCKET)
     
     return make_response("Image successfully uploaded", 200)
 
