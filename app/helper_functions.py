@@ -11,7 +11,7 @@ def get_available_garments(garments):
     return available_garments
 
 # get garments in shopping bag
-def retrieve_shopping_bag(garments):
+def get_unavailable_garments(garments):
     shopping_bag = []
 
     for garment in garments:

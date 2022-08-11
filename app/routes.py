@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response, render_template, request, redirect, send_file
 from app import db 
 from app.models.Garment import Garment
-from .helper_functions import get_available_garments, upload_file
+from .helper_functions import get_available_garments, upload_file, get_unavailable_garments
 import os
 from werkzeug.utils import secure_filename
 
@@ -21,6 +21,16 @@ def get_all_garments():
     available_garments = get_available_garments(garment_list)
 
     return jsonify(available_garments)
+
+# get garments in shopping bag
+@garment_bp.route("/bag", methods=["GET"])
+def get_shopping_bag():
+    garments = Garment.query.all()
+    garment_list = [garment.to_dict() for garment in garments]
+
+    shopping_bag = get_unavailable_garments(garment_list)
+
+    return jsonify(shopping_bag)
 
 # create one new garment listing
 @garment_bp.route("", methods=["POST"])
