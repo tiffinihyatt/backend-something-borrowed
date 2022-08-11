@@ -10,6 +10,16 @@ def get_available_garments(garments):
 
     return available_garments
 
+# get garments in shopping bag
+def retrieve_shopping_bag(garments):
+    shopping_bag = []
+
+    for garment in garments:
+        if not garment["is_available"]:
+            shopping_bag.append(garment)
+
+    return shopping_bag
+
 # add garment image to aws s3 bucket
 def upload_file(file_name, bucket):
     object_name = file_name
