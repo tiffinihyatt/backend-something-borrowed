@@ -51,7 +51,11 @@ def upload_picture(garment_id):
 
     uploaded_file = request.files['file']
     uploaded_file.save(os.path.join(UPLOAD_FOLDER, secure_filename(uploaded_file.filename)))
-    upload_file(f"uploads/{f.filename}", BUCKET)
+    upload_file(f"uploads/{uploaded_file.filename}", BUCKET)
+
+    garment = Garment.query.get(garment_id)
+    garment.image_file = str(uploaded_file.filename)
+    db.session.commit()
     
     return make_response("Image successfully uploaded", 200)
 
