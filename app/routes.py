@@ -3,10 +3,6 @@ from app import db
 from app.models.Garment import Garment
 from .helper_functions import get_available_garments, get_unavailable_garments
 
-# configurations for AWS S3
-UPLOAD_FOLDER = "garment-images"
-BUCKET = "something-borrowed-garments"
-
 # board_bp = Blueprint('board_bp', __name__, url_prefix="/boards/")
 garment_bp = Blueprint('garment_bp', __name__, url_prefix="/garments")
 
@@ -58,3 +54,13 @@ def toggle_availability(garment_id):
     db.session.commit()
 
     return make_response("Garment availability successfully updated", 201)
+
+# delete one garment by id
+@garment_bp.route("/<garment_id>", methods=["DELETE"])
+def delete_garment(garment_id):
+    garment = Garment.query.get(garment_id)
+
+    db.session.delete(garment)
+    db.session.commit()
+
+    return make_response("Garment successfully deleted", 200)
