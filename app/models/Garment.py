@@ -10,7 +10,6 @@ class Garment(db.Model):
     price = db.Column(db.String, nullable = False)
     description = db.Column(db.String, nullable = False)
     is_available = db.Column(db.Boolean, default=True)
-    image_file = db.Column(db.String, default=None)
 
     def to_dict(self):
         return dict(
@@ -23,7 +22,6 @@ class Garment(db.Model):
             price = self.price,
             description = self.description,
             is_available = self.is_available,
-            image_file = self.image_file
         )
     
     def create_instance_from_json(cls, json_data):
