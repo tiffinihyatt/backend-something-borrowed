@@ -53,7 +53,8 @@ def toggle_availability(garment_id):
 
     db.session.commit()
 
-    return garment.to_dict()
+    return make_response("Garment availability successfully updated", 200)
+
 
 # delete one garment by id
 @garment_bp.route("/<garment_id>", methods=["DELETE"])
