@@ -22,7 +22,8 @@ def test_get_one_garment(client, two_saved_garments):
         "color": "ivory",
         "condition": "Excellent used condition",
         "price": "800",
-        "description": "A beautiful, flowy blush gown"
+        "description": "A beautiful, flowy blush gown",
+        "is_available": True
     }
 
 def test_create_one_garment(client):
@@ -39,5 +40,5 @@ def test_create_one_garment(client):
     response_body = response.get_json()
 
     # Assert
-    assert response.status_code == 201
-    assert response_body.title == "Solaine Gown"
+    assert response.status_code == 200
+    assert response_body["title"] == "Solaine Gown"
