@@ -42,3 +42,11 @@ def test_create_one_garment(client):
     # Assert
     assert response.status_code == 200
     assert response_body["title"] == "Solaine Gown"
+
+def test_toggle_garment_availability(client, two_saved_garments):
+    # Act
+    response = client.patch("/garments/1")
+    response_body = response.get_json()
+
+    # Assert
+    assert response.status_code == 200
