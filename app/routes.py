@@ -3,7 +3,6 @@ from app import db
 from app.models.Garment import Garment
 from .helper_functions import get_available_garments, get_unavailable_garments
 
-# board_bp = Blueprint('board_bp', __name__, url_prefix="/boards/")
 garment_bp = Blueprint('garment_bp', __name__, url_prefix="/garments")
 
 # get all available garments
@@ -45,7 +44,7 @@ def get_garment_by_id(garment_id):
     garment = Garment.query.get(garment_id)
     return garment.to_dict()
 
-# update availability on one garment
+# toggle availability on one garment
 @garment_bp.route("/<garment_id>", methods=["PATCH"])
 def toggle_availability(garment_id):
     garment = Garment.query.get(garment_id)
