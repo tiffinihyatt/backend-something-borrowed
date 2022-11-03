@@ -20,7 +20,7 @@ Users can access photos from their camera roll to list a new item for sale. List
 
 ### Browse + Add to Cart
 
-Users can also view listing details and add items to their shopping cart. Adding an item to one's shopping cart toggles the item's availability and removes that item from the "Browse" view. When a user removes an item from their cart, the availability is toggled again and the item becomes visible in the "Browse" view.
+Users can browse all listings, view details for a single listing, and add items to their shopping cart. Adding an item to one's shopping cart toggles the item's availability and removes that item from the "Browse" view. When a user removes an item from their cart, the availability is toggled again and the item becomes visible in the "Browse" view.
 
 <img width="261" alt="sb - browse view" src="https://user-images.githubusercontent.com/95541002/199757803-b2e210c9-c97f-4d7a-af02-d3f3ac9f2914.png"><img width="261" alt="sb - detailed listing view" src="https://user-images.githubusercontent.com/95541002/199759592-5fa801fe-7959-430e-88ed-cd69ebf9bf47.png"><img width="262" alt="sb - shopping cart" src="https://user-images.githubusercontent.com/95541002/199759970-2027a9c8-2626-4ddf-be0d-8e12310f3aa4.png">
 
